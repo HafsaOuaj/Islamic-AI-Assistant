@@ -1,0 +1,18 @@
+[project]
+name = "islamic-ai-assistant"
+version = "0.1.0"
+description = "Islamic multi-agents assitant that help you live a better life as Muslim"
+authors = [
+    {name = "hOuajdi"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<3.15"
+dependencies = [
+    "torch (>=2.11.0,<3.0.0)",
+    "scikit-learn (>=1.8.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
