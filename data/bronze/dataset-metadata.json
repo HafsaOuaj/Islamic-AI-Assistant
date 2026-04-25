@@ -1,0 +1,11 @@
+{
+  "title": "Quran Tafsir (Ibn Kathir) JSONL",
+  "id": "oyilmaztekin/quran-tafsir-ibn-kathir-jsonl",
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "subtitle": "Ibn Kathir (Abridged) tafsir for every Quran verse as JSONL",
+  "description": "Newline-delimited JSON files containing the Ibn Kathir (Abridged) tafsir for each surah of the Quran. See README for schema details, notes on HTML content, and license requirements."
+}
