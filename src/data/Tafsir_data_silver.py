@@ -32,6 +32,14 @@ logging.basicConfig(
 
 # FUNCTIONS
 def load_main_dataset(path: str) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        path (str): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
     logging.info("Loading main dataset...")
     df = (
         pd.read_json(
@@ -52,6 +60,14 @@ def load_main_dataset(path: str) -> pd.DataFrame:
 
 
 def split_dataset(df: pd.DataFrame):
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+
+    Returns:
+        _type_: _description_
+    """
     df_missing = df[df['ayah_tafsir'] == "MISSING"].copy()
     df_complete = df[df['ayah_tafsir'] != "MISSING"].copy()
 
@@ -62,6 +78,14 @@ def split_dataset(df: pd.DataFrame):
 
 
 def load_backup_surah(surah_id: int) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        surah_id (int): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
     file_path = os.path.join(BACKUP_DIR, f"surah_{surah_id:03d}.jsonl")
 
     if not os.path.exists(file_path):
@@ -85,6 +109,17 @@ def load_backup_surah(surah_id: int) -> pd.DataFrame:
 
 
 def load_all_backups(surah_ids: List[int]) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        surah_ids (List[int]): _description_
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
     logging.info("Loading backup data...")
 
     backup_list = []
@@ -109,6 +144,15 @@ def load_all_backups(surah_ids: List[int]) -> pd.DataFrame:
 
 
 def fill_missing_tafsir(df_missing: pd.DataFrame, backup_df: pd.DataFrame) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        df_missing (pd.DataFrame): _description_
+        backup_df (pd.DataFrame): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
     logging.info("Filling missing tafsir...")
 
     df_filled = (
@@ -121,11 +165,27 @@ def fill_missing_tafsir(df_missing: pd.DataFrame, backup_df: pd.DataFrame) -> pd
 
 
 def combine_datasets(df_complete: pd.DataFrame, df_filled: pd.DataFrame) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        df_complete (pd.DataFrame): _description_
+        df_filled (pd.DataFrame): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
     df_final = pd.concat([df_complete, df_filled], ignore_index=True)
     return df_final
 
 
 def save_dataset(df: pd.DataFrame, output_dir: str, filename: str):
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+        output_dir (str): _description_
+        filename (str): _description_
+    """
     os.makedirs(output_dir, exist_ok=True)
 
     output_path = os.path.join(output_dir, filename)
@@ -138,6 +198,11 @@ def save_dataset(df: pd.DataFrame, output_dir: str, filename: str):
 
 
 def validate(df: pd.DataFrame):
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+    """
     missing_count = df['ayah_tafsir'].isna().sum()
     logging.info(f"Remaining missing tafsir: {missing_count}")
 
@@ -145,6 +210,8 @@ def validate(df: pd.DataFrame):
 
 # MAIN PIPELINE
 def main():
+    """_summary_
+    """
     df = load_main_dataset(INPUT_DATASET)
 
     df_missing, df_complete = split_dataset(df)
