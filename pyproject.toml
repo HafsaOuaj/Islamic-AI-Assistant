@@ -13,7 +13,8 @@ dependencies = [
     "ipykernel (>=7.2.0,<8.0.0)",
     "pandas (>=3.0.2,<4.0.0)",
     "huggingface-hub (>=1.11.0,<2.0.0)",
-    "kagglehub (>=1.0.0,<2.0.0)"
+    "kagglehub (>=1.0.0,<2.0.0)",
+    "annotated-types (>=0.7.0,<0.8.0)"
 ]
 
 
