@@ -1,3 +1,6 @@
+from dataclasses import dataclass, field
+
+@dataclass
 class QuranChunk:
 
     # --- Identification ---
@@ -18,3 +21,4 @@ class QuranChunk:
 
     # --- Embedding content ---
     content: str           # formatted text used for embedding
+    header:str
