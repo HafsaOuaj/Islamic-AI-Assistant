@@ -1,4 +1,4 @@
-from src.rag.quran_chunk import QuranChunk
+from quran_chunk import QuranChunk
 from dataclasses import dataclass, field
 
 class QuranDoc:

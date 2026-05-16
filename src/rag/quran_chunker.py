@@ -44,14 +44,18 @@ class QuranChunker:
         tafsir_text: str = "",
         header: str | None = None,
     ) -> QuranChunk:
-        chunk = QuranChunk()
-        chunk.chunk_id = chunk_id
-        chunk.surah_n = surah_n
-        chunk.ayah_n = ayah_n
-        chunk.ayah_ar = ayah_ar
-        chunk.ayah_en = ayah_en
-        chunk.tafsir_chunk = tafsir_text
-        chunk.header = header
+        chunk = QuranChunk(
+                chunk_id=chunk_id,
+                parent_id=f"{surah_n}:{ayah_n}",
+                surah_n=surah_n,
+                ayah_n=ayah_n,
+                ayah_ar=ayah_ar,
+                ayah_en=ayah_en,
+                tafsir_chunk=tafsir_text,
+                chunk_index=0,      # updated later
+                content="",         # filled later
+                header=header or "",
+            )
         return chunk
 
     def split_by_header_paragraphs(
@@ -253,11 +257,11 @@ class QuranChunker:
         if norm > 0:
             embedding = embedding / norm
 
-        indexed_chunk = IndexedChunk()
-        indexed_chunk.chunk_id = chunk.chunk_id
-        indexed_chunk.surah_n = chunk.surah_n
-        indexed_chunk.ayah_n = chunk.ayah_n
-        indexed_chunk.text = text
-        indexed_chunk.embedding = embedding
-
+        indexed_chunk = IndexedChunk(
+        chunk_id = chunk.chunk_id,
+        surah_n = chunk.surah_n,
+        ayah_n = chunk.ayah_n,
+        text = text,
+        embedding = embedding
+        )
         return indexed_chunk
