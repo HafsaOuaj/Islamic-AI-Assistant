@@ -218,7 +218,7 @@ K ∈ {1, 3, 5, 7, 10, 15}
 # Experimental Findings
 
 The experiments reveal two important behaviors:
-![alt text](image.png)
+![alt text](resources/doc/image.png)
 ## Recall@K
 
 Increasing `K` significantly improves retrieval recall, meaning the retriever is capable of finding the correct Quranic chunks within larger candidate sets.
@@ -232,26 +232,57 @@ This observation suggests that the current bottleneck is:
 * ranking quality rather than retrieval coverage.
 
 
+# Improvements
 
-# Planned Improvements
+## Diversity-aware post-processing
+
+Dense retrieval at the chunk level introduces a common issue of semantic clustering, where multiple top-ranked results originate from the same parent document. While this improves local relevance, it reduces the diversity of retrieved evidence.
+
+We therefore apply a post-processing step that enforces parent-level uniqueness constraint, selecting at most one chunk per (surah, ayah) pair while preserving ranking order. This approach can be interpreted as a lightweight diversity enhancement strategy similar to Maximal Marginal Relevance (MMR), but applied at the document granularity level.
+
+Empirically, this improves MRR by reducing rank saturation on repeated parent documents.
+
+![alt text](resources/doc/image-3.png)
+
+
+```code
+vector_db.search("Allah's mercy")
+
+{'ids': [['18:98:7', '18:98:5', '18:98:17', '18:98:1', '18:98:18']],
+ 'embeddings': None,
+ 'documents': [['Surah 18, Ayah 98\n\nArabic:\nقَالَ هَـٰذَا رَحْمَةٌ مِّن رَّبِّى ۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَ ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا\n\nEnglish:\nDhul-Qarnayn said, "This is a mercy from my Lord; but when the promise of my Lord comes, He will make it level, and ever is the promise of my Lord true."\n\nTafsir:\nقَالَ هَـذَا رَحْمَةٌ مِّن رَّبِّى\n\n(He said: This is a mercy from my Lord) for the people, when he placed a barrier between them and Ya\'juj and Ma\'juj, to stop them from spreading evil and corruption on earth',
+   'Surah 18, Ayah 98\n\nArabic:\nقَالَ هَـٰذَا رَحْمَةٌ مِّن رَّبِّى ۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَ ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا\n\nEnglish:\nDhul-Qarnayn said, "This is a mercy from my Lord; but when the promise of my Lord comes, He will make it level, and ever is the promise of my Lord true."\n\nTafsir:\nقَالَ هَـذَا رَحْمَةٌ مِّن رَّبِّى\n\n((Dhul-Qarnayn) said: "This is a mercy from my Lord',
+   'Surah 18, Ayah 98\n\nArabic:\nقَالَ هَـٰذَا رَحْمَةٌ مِّن رَّبِّى ۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَ ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا\n\nEnglish:\nDhul-Qarnayn said, "This is a mercy from my Lord; but when the promise of my Lord comes, He will make it level, and ever is the promise of my Lord true."\n\nTafsir:\n")\n\nفَجَمَعْنَـهُمْ جَمْعاً\n\n(and We shall collect them (the creatures) all together',
+   'Surah 18, Ayah 98\n\nArabic:\nقَالَ هَـٰذَا رَحْمَةٌ مِّن رَّبِّى ۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَ ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا\n\nEnglish:\nDhul-Qarnayn said, "This is a mercy from my Lord; but when the promise of my Lord comes, He will make it level, and ever is the promise of my Lord true."\n\nTafsir:\nفَمَا اسْطَـعُواْ أَن يَظْهَرُوهُ وَمَا اسْتَطَـعُواْ لَهُ نَقْبًا\n\n(So they (Ya\'juj and Ma\'juj) could not scale it or dig through it',
+   'Surah 18, Ayah 98\n\nArabic:\nقَالَ هَـٰذَا رَحْمَةٌ مِّن رَّبِّى ۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَ ۖ وَكَانَ وَعْدُ رَبِّى حَقًّا\n\nEnglish:\nDhul-Qarnayn said, "This is a mercy from my Lord; but when the promise of my Lord comes, He will make it level, and ever is the promise of my Lord true."\n\nTafsir:\n) means, `We shall bring them all together for Reckoning']],
+ 'uris': None,
+ 'included': ['documents', 'metadatas', 'distances'],
+ 'data': None,
+ 'metadatas': [[{'surah_n': 18, 'ayah_n': 98},
+   {'surah_n': 18, 'ayah_n': 98},
+   {'surah_n': 18, 'ayah_n': 98},
+   {'ayah_n': 98, 'surah_n': 18},
+   {'surah_n': 18, 'ayah_n': 98}]],
+ 'distances': [[0.42165976762771606,
+   0.42540526390075684,
+   0.43899548053741455,
+   0.4392390251159668,
+   0.44095444679260254]]}
+```
 
 ## Cross-Encoder Reranking
 
-A reranking stage will be added to improve ranking precision and MRR performance.
+A reranking stage has been introduced to improve ranking precision and Mean Reciprocal Rank (MRR) performance.
 
-Planned pipeline:
+The final retrieval pipeline is illustrated below:
 
-```text
-Dense Retrieval (Top-K)
-        ↓
-Cross-Encoder Reranker
-        ↓
-Top Relevant Chunks
-        ↓
-LLM Generation
-```
+![alt text](resources/doc/image-4.png)
 
 
+The results obtained using the cross-encoder reranking stage are shown below. As expected, there is a significant improvement in MRR as the value of K increases, compared to the previous version of the system without reranking.
+
+![alt text](resources/doc/image-5.png) 
+# Planned Improvements
 
 # Hallucination Analysis
 
@@ -326,3 +357,4 @@ Planned future research directions include:
 * Planner agent
 * Multi-agent orchestration
 * Arabic retrieval optimization
+
