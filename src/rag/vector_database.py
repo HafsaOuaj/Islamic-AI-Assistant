@@ -31,7 +31,10 @@ class VectorDatabase:
         # 3. Collection init
         # -----------------------------
         self.collection = self.client.get_or_create_collection(
-            name=collection_name
+            name=collection_name,
+            configuration={"hnsw": {
+            "space": "cosine",
+        }}
         )
 
     # ------------------------------------------------------------
@@ -93,7 +96,7 @@ class VectorDatabase:
             # Store metadata for filtering/debugging
             metadatas.append({
                 "surah_n": c.surah_n,
-                "ayah_n": c.ayah_n
+                "ayah_n": c.ayah_n,
             })
 
         # Insert into Chroma collection

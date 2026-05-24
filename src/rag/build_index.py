@@ -1,17 +1,26 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 import pandas as pd
-from quran_chunker import QuranChunker
-from vector_database import VectorDatabase
+from rag.quran_chunker import QuranChunker
+from rag.vector_database import VectorDatabase
 import pandas as pd
 import pickle
 import traceback
 import os
+
 def build_index(dataset_path,output_path):
     print("=" * 80)
     print("STEP 1: Loading dataset")
     print("=" * 80)
 
     # Load only one row for debugging
-    data = pd.read_json(dataset_path, lines=True, nrows=1)
+    data = pd.read_json(dataset_path, lines=True)
+    n_samples=50
+    data = data.sample(n=n_samples, random_state=42)
+    data.to_csv(f"{output_path}/test_dataset.csv")
     print(f"Dataset loaded successfully.")
     print(f"Number of rows: {len(data)}")
     print(f"Columns: {list(data.columns)}")
@@ -158,6 +167,6 @@ def build_index(dataset_path,output_path):
 
 
 if __name__ == "__main__":
-    dataset_path = "../../data/silver/tafsir_dataset.json"
-    output_path= "../../data/gold"
+    dataset_path = "data/silver/tafsir_dataset.json"
+    output_path= "data/golld"
     build_index(dataset_path=dataset_path,output_path=output_path)

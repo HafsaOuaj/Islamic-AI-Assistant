@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import numpy as np
 @dataclass
 class IndexedChunk:
@@ -6,5 +6,6 @@ class IndexedChunk:
     surah_n: int
     ayah_n: int
     text: str
+    parent_id:str
     embedding: np.ndarray  # normalized dense embedding
 

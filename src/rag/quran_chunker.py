@@ -3,9 +3,9 @@ from annotated_types import Ge, Le
 import re
 from FlagEmbedding import BGEM3FlagModel
 import numpy as np
-from quran_chunk import QuranChunk
-from quran_doc import QuranDoc
-from index_chunk import IndexedChunk
+from rag.quran_chunk import QuranChunk
+from rag.quran_doc import QuranDoc
+from rag.index_chunk import IndexedChunk
 
 
 class QuranChunker:
@@ -262,6 +262,7 @@ class QuranChunker:
         surah_n = chunk.surah_n,
         ayah_n = chunk.ayah_n,
         text = text,
+        parent_id=chunk.parent_id,
         embedding = embedding
         )
         return indexed_chunk
