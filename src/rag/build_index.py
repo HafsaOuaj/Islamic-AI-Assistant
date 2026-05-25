@@ -168,5 +168,5 @@ def build_index(dataset_path,output_path):
 
 if __name__ == "__main__":
     dataset_path = "data/silver/tafsir_dataset.json"
-    output_path= "data/golld"
+    output_path= "data/gold"
     build_index(dataset_path=dataset_path,output_path=output_path)
