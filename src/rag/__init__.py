@@ -5,3 +5,4 @@ from .quran_chunk import QuranChunk
 from .quran_chunker import QuranChunker
 from .quran_doc import QuranDoc
 from .vector_database import VectorDatabase
+from .utils import init_reranker
