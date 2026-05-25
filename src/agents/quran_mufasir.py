@@ -3,14 +3,13 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from rag import VectorDatabase
-from src.rag import (
+from rag import (
     retrieval,
     VectorDatabase,
 )
 
 from ollama import Client
-
+from rag import init_reranker
 
 def build_prompt(question: str, context: str) -> str:
     """
@@ -66,6 +65,9 @@ class QuranRAG:
         # Model served by Ollama
         self.model_name = model_name
 
+        # Retrieval reranker
+        self.reranker =init_reranker()
+
     def ask(self, question: str, top_k: int = 1, verbose: bool = True) -> str:
         # 1. Retrieve relevant context
         if verbose:
@@ -78,6 +80,7 @@ class QuranRAG:
             query=question,
             vector_db=self.vector_db,
             top_k=top_k,
+            reranker=self.reranker
         )
 
         if not context.strip():
