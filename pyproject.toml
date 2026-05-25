@@ -22,7 +22,11 @@ dependencies = [
     "plotly (>=6.7.0,<7.0.0)",
     "nbformat (>=4.2.0)",
     "transformers (>=4.44.2,<6.0.0)",
-    "flagembedding (>=1.4.0,<2.0.0)"
+    "flagembedding (>=1.4.0,<2.0.0)",
+    "fastapi[standard] (>=0.136.3,<0.137.0)",
+    "rouge-metric (>=1.0.1,<2.0.0)",
+    "evaluate (>=0.4.6,<0.5.0)",
+    "bert-score (>=0.3.13,<0.4.0)"
 ]
 
 [build-system]
