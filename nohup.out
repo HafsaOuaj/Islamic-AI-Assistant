@@ -1,0 +1,544 @@
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files: 100%|##########| 30/30 [00:00<00:00, 5428.82it/s]
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<00:12, 30.66it/s]Loading weights:  76%|#######5  | 296/391 [00:00<00:00, 1374.99it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 1211.94it/s]
+================================================================================
+STEP 1: Loading dataset
+================================================================================
+Traceback (most recent call last):
+  File "C:\Users\hafsa\Desktop\Islamic-AI-Assistant\.venv\Lib\site-packages\pandas\io\json\_json.py", line 948, in _get_data_from_filepath
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        errors=self.encoding_errors,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hafsa\Desktop\Islamic-AI-Assistant\.venv\Lib\site-packages\pandas\io\common.py", line 926, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '../../data/silver/tafsir_dataset.json'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\hafsa\Desktop\Islamic-AI-Assistant\src\rag\build_index.py", line 172, in <module>
+    build_index(dataset_path=dataset_path,output_path=output_path)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\hafsa\Desktop\Islamic-AI-Assistant\src\rag\build_index.py", line 20, in build_index
+    data = pd.read_json(dataset_path, lines=True)
+  File "C:\Users\hafsa\Desktop\Islamic-AI-Assistant\.venv\Lib\site-packages\pandas\io\json\_json.py", line 829, in read_json
+    json_reader = JsonReader(
+        path_or_buf,
+    ...<16 lines>...
+        engine=engine,
+    )
+  File "C:\Users\hafsa\Desktop\Islamic-AI-Assistant\.venv\Lib\site-packages\pandas\io\json\_json.py", line 931, in __init__
+    data = self._get_data_from_filepath(filepath_or_buffer)
+  File "C:\Users\hafsa\Desktop\Islamic-AI-Assistant\.venv\Lib\site-packages\pandas\io\json\_json.py", line 957, in _get_data_from_filepath
+    raise FileNotFoundError(
+        f"File {filepath_or_buffer} does not exist"
+    ) from err
+FileNotFoundError: File ../../data/silver/tafsir_dataset.json does not exist
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files: 100%|##########| 30/30 [00:00<00:00, 6876.66it/s]
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<00:12, 31.82it/s]Loading weights:  83%|########3 | 325/391 [00:00<00:00, 1469.98it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 1227.22it/s]
+================================================================================
+STEP 1: Loading dataset
+================================================================================
+Dataset loaded successfully.
+Number of rows: 10
+Columns: ['surah_n', 'ayah_n', 'ayah_text_ar', 'ayah_text', 'ayah_tafsir']
+
+================================================================================
+STEP 2: Initializing Vector Database
+================================================================================
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files: 100%|##########| 30/30 [00:00<00:00, 5238.95it/s]
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<00:19, 20.02it/s]Loading weights:  53%|#####3    | 209/391 [00:00<00:00, 737.47it/s]Loading weights:  83%|########2 | 323/391 [00:00<00:00, 325.84it/s]Loading weights: 100%|##########| 391/391 [00:01<00:00, 321.27it/s]
+Vector database initialized.
+
+================================================================================
+STEP 3: Initializing QuranChunker
+================================================================================
+Chunker initialized.
+
+================================================================================
+STEP 4: Processing dataset rows
+================================================================================
+
+Processing row 600/10
+Surah: 9, Ayah: 50
+Parent ID: 9:50
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 1 chunks.
+  -> Stored QuranDoc with key: 9:50
+    -> Embedding chunk 1/1 (ID: 9:50:0)
+       Embedding shape: (1024,)
+
+Processing row 1845/10
+Surah: 81, Ayah: 1
+Parent ID: 81:1
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 38 chunks.
+  -> Stored QuranDoc with key: 81:1
+    -> Embedding chunk 1/38 (ID: 81:1:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/38 (ID: 81:1:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/38 (ID: 81:1:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/38 (ID: 81:1:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/38 (ID: 81:1:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/38 (ID: 81:1:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/38 (ID: 81:1:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/38 (ID: 81:1:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/38 (ID: 81:1:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/38 (ID: 81:1:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/38 (ID: 81:1:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/38 (ID: 81:1:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/38 (ID: 81:1:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/38 (ID: 81:1:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/38 (ID: 81:1:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/38 (ID: 81:1:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/38 (ID: 81:1:16)
+       Embedding shape: (1024,)
+    -> Embedding chunk 18/38 (ID: 81:1:17)
+       Embedding shape: (1024,)
+    -> Embedding chunk 19/38 (ID: 81:1:18)
+       Embedding shape: (1024,)
+    -> Embedding chunk 20/38 (ID: 81:1:19)
+       Embedding shape: (1024,)
+    -> Embedding chunk 21/38 (ID: 81:1:20)
+       Embedding shape: (1024,)
+    -> Embedding chunk 22/38 (ID: 81:1:21)
+       Embedding shape: (1024,)
+    -> Embedding chunk 23/38 (ID: 81:1:22)
+       Embedding shape: (1024,)
+    -> Embedding chunk 24/38 (ID: 81:1:23)
+       Embedding shape: (1024,)
+    -> Embedding chunk 25/38 (ID: 81:1:24)
+       Embedding shape: (1024,)
+    -> Embedding chunk 26/38 (ID: 81:1:25)
+       Embedding shape: (1024,)
+    -> Embedding chunk 27/38 (ID: 81:1:26)
+       Embedding shape: (1024,)
+    -> Embedding chunk 28/38 (ID: 81:1:27)
+       Embedding shape: (1024,)
+    -> Embedding chunk 29/38 (ID: 81:1:28)
+       Embedding shape: (1024,)
+    -> Embedding chunk 30/38 (ID: 81:1:29)
+       Embedding shape: (1024,)
+    -> Embedding chunk 31/38 (ID: 81:1:30)
+       Embedding shape: (1024,)
+    -> Embedding chunk 32/38 (ID: 81:1:31)
+       Embedding shape: (1024,)
+    -> Embedding chunk 33/38 (ID: 81:1:32)
+       Embedding shape: (1024,)
+    -> Embedding chunk 34/38 (ID: 81:1:33)
+       Embedding shape: (1024,)
+    -> Embedding chunk 35/38 (ID: 81:1:34)
+       Embedding shape: (1024,)
+    -> Embedding chunk 36/38 (ID: 81:1:35)
+       Embedding shape: (1024,)
+    -> Embedding chunk 37/38 (ID: 81:1:36)
+       Embedding shape: (1024,)
+    -> Embedding chunk 38/38 (ID: 81:1:37)
+       Embedding shape: (1024,)
+
+Processing row 3108/10
+Surah: 18, Ayah: 98
+Parent ID: 18:98
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 22 chunks.
+  -> Stored QuranDoc with key: 18:98
+    -> Embedding chunk 1/22 (ID: 18:98:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/22 (ID: 18:98:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/22 (ID: 18:98:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/22 (ID: 18:98:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/22 (ID: 18:98:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/22 (ID: 18:98:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/22 (ID: 18:98:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/22 (ID: 18:98:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/22 (ID: 18:98:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/22 (ID: 18:98:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/22 (ID: 18:98:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/22 (ID: 18:98:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/22 (ID: 18:98:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/22 (ID: 18:98:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/22 (ID: 18:98:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/22 (ID: 18:98:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/22 (ID: 18:98:16)
+       Embedding shape: (1024,)
+    -> Embedding chunk 18/22 (ID: 18:98:17)
+       Embedding shape: (1024,)
+    -> Embedding chunk 19/22 (ID: 18:98:18)
+       Embedding shape: (1024,)
+    -> Embedding chunk 20/22 (ID: 18:98:19)
+       Embedding shape: (1024,)
+    -> Embedding chunk 21/22 (ID: 18:98:20)
+       Embedding shape: (1024,)
+    -> Embedding chunk 22/22 (ID: 18:98:21)
+       Embedding shape: (1024,)
+
+Processing row 402/10
+Surah: 6, Ayah: 121
+Parent ID: 6:121
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 22 chunks.
+  -> Stored QuranDoc with key: 6:121
+    -> Embedding chunk 1/22 (ID: 6:121:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/22 (ID: 6:121:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/22 (ID: 6:121:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/22 (ID: 6:121:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/22 (ID: 6:121:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/22 (ID: 6:121:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/22 (ID: 6:121:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/22 (ID: 6:121:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/22 (ID: 6:121:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/22 (ID: 6:121:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/22 (ID: 6:121:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/22 (ID: 6:121:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/22 (ID: 6:121:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/22 (ID: 6:121:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/22 (ID: 6:121:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/22 (ID: 6:121:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/22 (ID: 6:121:16)
+       Embedding shape: (1024,)
+    -> Embedding chunk 18/22 (ID: 6:121:17)
+       Embedding shape: (1024,)
+    -> Embedding chunk 19/22 (ID: 6:121:18)
+       Embedding shape: (1024,)
+    -> Embedding chunk 20/22 (ID: 6:121:19)
+       Embedding shape: (1024,)
+    -> Embedding chunk 21/22 (ID: 6:121:20)
+       Embedding shape: (1024,)
+    -> Embedding chunk 22/22 (ID: 6:121:21)
+       Embedding shape: (1024,)
+
+Processing row 4450/10
+Surah: 39, Ayah: 38
+Parent ID: 39:38
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 17 chunks.
+  -> Stored QuranDoc with key: 39:38
+    -> Embedding chunk 1/17 (ID: 39:38:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/17 (ID: 39:38:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/17 (ID: 39:38:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/17 (ID: 39:38:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/17 (ID: 39:38:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/17 (ID: 39:38:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/17 (ID: 39:38:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/17 (ID: 39:38:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/17 (ID: 39:38:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/17 (ID: 39:38:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/17 (ID: 39:38:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/17 (ID: 39:38:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/17 (ID: 39:38:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/17 (ID: 39:38:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/17 (ID: 39:38:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/17 (ID: 39:38:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/17 (ID: 39:38:16)
+       Embedding shape: (1024,)
+
+Processing row 5015/10
+Surah: 53, Ayah: 36
+Parent ID: 53:36
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 22 chunks.
+  -> Stored QuranDoc with key: 53:36
+    -> Embedding chunk 1/22 (ID: 53:36:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/22 (ID: 53:36:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/22 (ID: 53:36:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/22 (ID: 53:36:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/22 (ID: 53:36:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/22 (ID: 53:36:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/22 (ID: 53:36:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/22 (ID: 53:36:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/22 (ID: 53:36:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/22 (ID: 53:36:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/22 (ID: 53:36:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/22 (ID: 53:36:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/22 (ID: 53:36:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/22 (ID: 53:36:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/22 (ID: 53:36:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/22 (ID: 53:36:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/22 (ID: 53:36:16)
+       Embedding shape: (1024,)
+    -> Embedding chunk 18/22 (ID: 53:36:17)
+       Embedding shape: (1024,)
+    -> Embedding chunk 19/22 (ID: 53:36:18)
+       Embedding shape: (1024,)
+    -> Embedding chunk 20/22 (ID: 53:36:19)
+       Embedding shape: (1024,)
+    -> Embedding chunk 21/22 (ID: 53:36:20)
+       Embedding shape: (1024,)
+    -> Embedding chunk 22/22 (ID: 53:36:21)
+       Embedding shape: (1024,)
+
+Processing row 1942/10
+Surah: 2, Ayah: 121
+Parent ID: 2:121
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 34 chunks.
+  -> Stored QuranDoc with key: 2:121
+    -> Embedding chunk 1/34 (ID: 2:121:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/34 (ID: 2:121:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/34 (ID: 2:121:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/34 (ID: 2:121:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/34 (ID: 2:121:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/34 (ID: 2:121:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/34 (ID: 2:121:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/34 (ID: 2:121:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/34 (ID: 2:121:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/34 (ID: 2:121:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/34 (ID: 2:121:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/34 (ID: 2:121:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/34 (ID: 2:121:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/34 (ID: 2:121:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/34 (ID: 2:121:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/34 (ID: 2:121:15)
+       Embedding shape: (1024,)
+    -> Embedding chunk 17/34 (ID: 2:121:16)
+       Embedding shape: (1024,)
+    -> Embedding chunk 18/34 (ID: 2:121:17)
+       Embedding shape: (1024,)
+    -> Embedding chunk 19/34 (ID: 2:121:18)
+       Embedding shape: (1024,)
+    -> Embedding chunk 20/34 (ID: 2:121:19)
+       Embedding shape: (1024,)
+    -> Embedding chunk 21/34 (ID: 2:121:20)
+       Embedding shape: (1024,)
+    -> Embedding chunk 22/34 (ID: 2:121:21)
+       Embedding shape: (1024,)
+    -> Embedding chunk 23/34 (ID: 2:121:22)
+       Embedding shape: (1024,)
+    -> Embedding chunk 24/34 (ID: 2:121:23)
+       Embedding shape: (1024,)
+    -> Embedding chunk 25/34 (ID: 2:121:24)
+       Embedding shape: (1024,)
+    -> Embedding chunk 26/34 (ID: 2:121:25)
+       Embedding shape: (1024,)
+    -> Embedding chunk 27/34 (ID: 2:121:26)
+       Embedding shape: (1024,)
+    -> Embedding chunk 28/34 (ID: 2:121:27)
+       Embedding shape: (1024,)
+    -> Embedding chunk 29/34 (ID: 2:121:28)
+       Embedding shape: (1024,)
+    -> Embedding chunk 30/34 (ID: 2:121:29)
+       Embedding shape: (1024,)
+    -> Embedding chunk 31/34 (ID: 2:121:30)
+       Embedding shape: (1024,)
+    -> Embedding chunk 32/34 (ID: 2:121:31)
+       Embedding shape: (1024,)
+    -> Embedding chunk 33/34 (ID: 2:121:32)
+       Embedding shape: (1024,)
+    -> Embedding chunk 34/34 (ID: 2:121:33)
+       Embedding shape: (1024,)
+
+Processing row 2803/10
+Surah: 12, Ayah: 95
+Parent ID: 12:95
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 12 chunks.
+  -> Stored QuranDoc with key: 12:95
+    -> Embedding chunk 1/12 (ID: 12:95:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/12 (ID: 12:95:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/12 (ID: 12:95:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/12 (ID: 12:95:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/12 (ID: 12:95:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/12 (ID: 12:95:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/12 (ID: 12:95:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/12 (ID: 12:95:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/12 (ID: 12:95:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/12 (ID: 12:95:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/12 (ID: 12:95:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/12 (ID: 12:95:11)
+       Embedding shape: (1024,)
+
+Processing row 4629/10
+Surah: 43, Ayah: 19
+Parent ID: 43:19
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 16 chunks.
+  -> Stored QuranDoc with key: 43:19
+    -> Embedding chunk 1/16 (ID: 43:19:0)
+       Embedding shape: (1024,)
+    -> Embedding chunk 2/16 (ID: 43:19:1)
+       Embedding shape: (1024,)
+    -> Embedding chunk 3/16 (ID: 43:19:2)
+       Embedding shape: (1024,)
+    -> Embedding chunk 4/16 (ID: 43:19:3)
+       Embedding shape: (1024,)
+    -> Embedding chunk 5/16 (ID: 43:19:4)
+       Embedding shape: (1024,)
+    -> Embedding chunk 6/16 (ID: 43:19:5)
+       Embedding shape: (1024,)
+    -> Embedding chunk 7/16 (ID: 43:19:6)
+       Embedding shape: (1024,)
+    -> Embedding chunk 8/16 (ID: 43:19:7)
+       Embedding shape: (1024,)
+    -> Embedding chunk 9/16 (ID: 43:19:8)
+       Embedding shape: (1024,)
+    -> Embedding chunk 10/16 (ID: 43:19:9)
+       Embedding shape: (1024,)
+    -> Embedding chunk 11/16 (ID: 43:19:10)
+       Embedding shape: (1024,)
+    -> Embedding chunk 12/16 (ID: 43:19:11)
+       Embedding shape: (1024,)
+    -> Embedding chunk 13/16 (ID: 43:19:12)
+       Embedding shape: (1024,)
+    -> Embedding chunk 14/16 (ID: 43:19:13)
+       Embedding shape: (1024,)
+    -> Embedding chunk 15/16 (ID: 43:19:14)
+       Embedding shape: (1024,)
+    -> Embedding chunk 16/16 (ID: 43:19:15)
+       Embedding shape: (1024,)
+
+Processing row 3015/10
+Surah: 17, Ayah: 38
+Parent ID: 17:38
+  -> Chunking tafsir...
+  -> Chunking completed.
+  -> Generated 1 chunks.
+  -> Stored QuranDoc with key: 17:38
+    -> Embedding chunk 1/1 (ID: 17:38:0)
+       Embedding shape: (1024,)
+
+================================================================================
+STEP 5: Adding chunks to Vector Database
+================================================================================
+Total indexed chunks to add: 185
+Chunks successfully added to vector database.
+
+================================================================================
+STEP 6: Checking database statistics
+================================================================================
+Indexed chunks: 185
+Vector database count: 185
+
+================================================================================
+STEP 7: Saving QuranDoc store
+================================================================================
+Saving 10 QuranDoc objects to: data/gold\quran_docs.pkl
+Pickle file saved successfully.
+
+================================================================================
+PIPELINE COMPLETED SUCCESSFULLY
+================================================================================
+Total QuranDoc objects saved: 10
+Total chunks indexed: 185
+Final vector database count: 185
