@@ -450,6 +450,31 @@ tqdm = ">=4.31.1"
 transformers = ">=3.0.0"
 
 [[package]]
+name = "bitsandbytes"
+version = "0.49.2"
+description = "k-bit optimizers and matrix multiplication routines."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "bitsandbytes-0.49.2-py3-none-macosx_14_0_arm64.whl", hash = "sha256:87be5975edeac5396d699ecbc39dfc47cf2c026daaf2d5852a94368611a6823f"},
+    {file = "bitsandbytes-0.49.2-py3-none-manylinux_2_24_aarch64.whl", hash = "sha256:2fc0830c5f7169be36e60e11f2be067c8f812dfcb829801a8703735842450750"},
+    {file = "bitsandbytes-0.49.2-py3-none-manylinux_2_24_x86_64.whl", hash = "sha256:54b771f06e1a3c73af5c7f16ccf0fc23a846052813d4b008d10cb6e017dd1c8c"},
+    {file = "bitsandbytes-0.49.2-py3-none-win_amd64.whl", hash = "sha256:2e0ddd09cd778155388023cbe81f00afbb7c000c214caef3ce83386e7144df7d"},
+]
+
+[package.dependencies]
+numpy = ">=1.17"
+packaging = ">=20.9"
+torch = ">=2.3,<3"
+
+[package.extras]
+benchmark = ["matplotlib", "pandas"]
+dev = ["bitsandbytes[test]", "build (>=1.0.0,<2)", "pre-commit (>=3.5.0,<4)", "ruff (>=0.14.3,<0.15.0)", "wheel (>=0.42,<1)"]
+docs = ["hf-doc-builder (==0.5.0)"]
+test = ["einops (>=0.8.0,<0.9.0)", "lion-pytorch (==0.2.3)", "pytest (>=8.3,<9.0)", "scipy (>=1.11.4,<2)", "transformers (>=4.30.1,<5)"]
+
+[[package]]
 name = "build"
 version = "1.5.0"
 description = "A simple, correct Python build frontend"
@@ -6766,6 +6791,21 @@ optree = ["optree (>=0.13.0)"]
 pyyaml = ["pyyaml"]
 
 [[package]]
+name = "torchao"
+version = "0.17.0"
+description = "Package for applying ao techniques to GPU models"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "torchao-0.17.0-cp310-abi3-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:87a418ce0ec064a821ceab83c921b501acef0ce9a6ccd1be358fcd16c3ae8c58"},
+    {file = "torchao-0.17.0-py3-none-any.whl", hash = "sha256:02eba449036715b9ae784fbaa1a6f97994bb7b0421ce92d1d5d1c08e5bd6d349"},
+]
+
+[package.extras]
+dev = ["bitsandbytes", "blobfile", "cmake (>=3.19.0,<4.0.0)", "diskcache", "expecttest", "fire", "hypothesis", "importlib_metadata", "lm_eval", "matplotlib", "ninja", "packaging", "pandas", "parameterized", "pre-commit", "pycocotools", "pytest (==8.4.2)", "pyyaml", "ruff (==0.11.6)", "sentencepiece", "tabulate", "tiktoken", "tqdm", "transformers", "unittest-xml-reporting"]
+
+[[package]]
 name = "tornado"
 version = "6.5.5"
 description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
@@ -6922,6 +6962,41 @@ files = [
 build = ["cmake (>=3.20,<4.0)", "lit"]
 tests = ["autopep8", "isort", "llnl-hatchet", "numpy", "pytest", "pytest-forked", "pytest-xdist", "scipy (>=1.7.1)"]
 tutorials = ["matplotlib", "pandas", "tabulate"]
+
+[[package]]
+name = "trl"
+version = "1.5.1"
+description = "Train transformer language models with reinforcement learning."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "trl-1.5.1-py3-none-any.whl", hash = "sha256:502a4c71f807fcb2de9768802faf5d1e9c16e52c483f51e80630b10da3451928"},
+    {file = "trl-1.5.1.tar.gz", hash = "sha256:8d73ffd9329ac21ffc47919656da2b7faaa6406fbe3574896a1923f390a9197b"},
+]
+
+[package.dependencies]
+accelerate = ">=1.4.0"
+datasets = ">=4.7.0"
+jinja2 = "*"
+packaging = ">20.0"
+transformers = ">=4.56.2"
+
+[package.extras]
+bco = ["joblib", "scikit-learn"]
+deepspeed = ["deepspeed (>=0.14.4)", "transformers (!=5.1.0)"]
+dev = ["Pillow", "bitsandbytes", "deepspeed (>=0.14.4)", "hf-doc-builder", "jmespath", "joblib", "kernels", "liger-kernel (>=0.8.0)", "num2words (==0.5.14)", "openreward (>=0.1.109) ; python_version >= \"3.11\"", "peft (>=0.8.0)", "pre-commit", "pytest", "pytest-cov", "pytest-datadir (>=1.7.0)", "pytest-rerunfailures (==15.1)", "pytest-xdist", "scikit-learn", "torchvision"]
+kernels = ["kernels"]
+liger = ["liger-kernel (>=0.8.0)"]
+math-verify = ["math-verify (>=0.5.2)"]
+openreward = ["openreward (>=0.1.109) ; python_version >= \"3.11\""]
+peft = ["peft (>=0.8.0)"]
+quality = ["hf-doc-builder", "pre-commit"]
+quantization = ["bitsandbytes"]
+scikit = ["scikit-learn"]
+test = ["pytest", "pytest-cov", "pytest-datadir (>=1.7.0)", "pytest-rerunfailures (==15.1)", "pytest-xdist"]
+vllm = ["aiohttp (>=3.13.3)", "fastapi", "pydantic", "requests", "uvicorn", "vllm (>=0.12.0,<=0.18.0)"]
+vlm = ["Pillow", "num2words (==0.5.14)", "torchvision"]
 
 [[package]]
 name = "typer"
@@ -7714,4 +7789,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<3.15"
-content-hash = "2db637433b8b4b2e01ed8712d1442c0f1f38cb7ba5f4f7f1cfabef4b2a7feb4f"
+content-hash = "e579336d4d05da718210167e60df62c521f8e3de03226e4452d6920abf3a877d"
